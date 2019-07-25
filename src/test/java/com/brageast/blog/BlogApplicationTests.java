@@ -19,8 +19,8 @@ public class BlogApplicationTests {
     @Test
     public void contextLoads() {
 
-        articleMapper.getBaseArticle(new Page<BaseArticle>(1,5))
-        .getRecords().forEach(System.out::println);
+        System.out.println(articleMapper.getBaseArticle(new Page<BaseArticle>(1,5)));
+//        .getRecords().forEach(System.out::println);
 
     }
 

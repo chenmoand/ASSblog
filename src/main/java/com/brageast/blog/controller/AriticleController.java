@@ -17,7 +17,7 @@ public class AriticleController {
     @Autowired
     ArticeService articeService;
 
-    @RequestMapping(value = "/articles")
+    @RequestMapping(value = "/article/page")
     public List<BaseArticle> getBaseAriticles(Integer current, Long size){
         int ct = current == null? 0 : current;
         long sz = size == null? 10 : size;
@@ -25,18 +25,41 @@ public class AriticleController {
         System.out.println(page.getRecords());
         return articeService.getBaseArticle(page).getRecords();
     }
-
+    @RequestMapping(value = "/article/update", method = RequestMethod.POST)
+    public Boolean updateArtice(@RequestBody Article article){
+        try{
+            articeService.updateArtice(
+                    article.getId(), article.getArticleName(),
+                    article.getDescribe(), article.getAuthor(),
+                    article.getLable(), article.getClassification(),
+                    article.getContent(), article.getDate(),
+                    article.getUrl()
+            );
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
     @RequestMapping(value = "/article")
     public Article getMoreAriticle(String url){
         return articeService.getMoreArticle(url);
     }
+
     @RequestMapping(value = "/article/add", method = RequestMethod.POST)
-    public void addAriticle(@RequestBody Article article){
-        articeService.addArtice(
-                article.getId(),article.getArticleName(),
-                article.getDescribe(),article.getAuthor(),
-                article.getLable(),article.getClassification(),
-                article.getContent(), article.getDate(),
-                article.getUrl());
+    public Boolean addAriticle(@RequestBody Article article){
+        try {
+            articeService.addArtice(
+                    article.getId(), article.getArticleName(),
+                    article.getDescribe(), article.getAuthor(),
+                    article.getLable(), article.getClassification(),
+                    article.getContent(), article.getDate(),
+                    article.getUrl()
+            );
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
     }
 }

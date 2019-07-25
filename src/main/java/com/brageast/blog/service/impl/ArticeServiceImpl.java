@@ -33,5 +33,10 @@ public class ArticeServiceImpl extends ServiceImpl<ArticleMapper, Article> imple
         baseMapper.addArtice(id, articleName, describe, author, lable, classification, content,  date, url);
     }
 
+    @Override
+    public void updateArtice(Long id, String articleName, String describe, String author, String lable, String classification, String content, Date date, String url) {
+        baseMapper.updateArtice(id, articleName, describe, author, lable, classification, content,  date, url);
+    }
+
 
 }

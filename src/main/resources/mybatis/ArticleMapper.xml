@@ -18,4 +18,20 @@
         INSERT INTO articeList(`id`, `articleName`, `describe`, `author`, `lable`, `classification`, `content`, `date`, `url`)
         VALUE (#{id}, #{articleName}, #{describe}, #{author}, #{lable}, #{classification}, #{content}, #{date}, #{url})
     </insert>
+    <update id="updateArtice" parameterType="com.brageast.blog.entity.Article">
+        UPDATE articeList
+        <trim prefix="set" suffixOverrides=",">
+            <if test="articleName != null">`articleName`=#{articleName},</if>
+            <if test="describe != null">`describe`=#{describe},</if>
+            <if test="author != null">`author`=#{author},</if>
+            <if test="lable != null">`lable`=#{lable},</if>
+            <if test="classification != null">`classification`=#{classification},</if>
+            <if test="content != null">`content`=#{content},</if>
+            <if test="date != null">`date`=#{date},</if>
+            <if test="url != null">`url`=#{url},</if>
+        </trim>
+        <where>
+            id=#{id}
+        </where>
+    </update>
 </mapper>
