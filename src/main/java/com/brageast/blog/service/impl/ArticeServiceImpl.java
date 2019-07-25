@@ -1,9 +1,9 @@
 package com.brageast.blog.service.impl;
 
-import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.brageast.blog.entity.Article;
+import com.brageast.blog.entity.BaseArticle;
 import com.brageast.blog.mapper.ArticleMapper;
 import com.brageast.blog.service.ArticeService;
 import lombok.AllArgsConstructor;
@@ -22,7 +22,7 @@ public class ArticeServiceImpl extends ServiceImpl<ArticleMapper, Article> imple
     }
 
     @Override
-    public IPage<Article> getBaseArticle(Page<Article> page) {
+    public Page<BaseArticle> getBaseArticle(Page<BaseArticle> page) {
         return baseMapper.getBaseArticle(page);
     }
 

@@ -3,15 +3,15 @@
         PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.brageast.blog.mapper.ArticleMapper">
-    <select id="getBaseArticle" resultType="com.brageast.blog.entity.Article">
+    <select id="getBaseArticle" resultType="com.brageast.blog.entity.BaseArticle">
         SELECT `articleName`, `describe`, `url` FROM articeList
     </select>
     <select id="getMoreArticle" resultType="com.brageast.blog.entity.Article">
         SELECT * FROM articeList
         <where>
-            <if test="url !=null">
+<!--            <if test="url != null">-->
                 `url` = #{url}
-            </if>
+<!--            </if>-->
         </where>
     </select>
     <insert id="addArtice" parameterType="com.brageast.blog.entity.Article">

@@ -8,5 +8,5 @@ CREATE TABLE IF NOT EXISTS `articeList` (
     `content` TEXT NOT NULL COMMENT '文章内容',
     `date` DATETIME NOT NULL COMMENT '日期',
     `url` VARCHAR(100) NOT NULL COMMENT  '地址',
-    primary key (id)
+    PRIMARY KEY (id), UNIQUE (url)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT '文章表';

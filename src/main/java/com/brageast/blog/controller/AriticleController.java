@@ -2,6 +2,7 @@ package com.brageast.blog.controller;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.brageast.blog.entity.Article;
+import com.brageast.blog.entity.BaseArticle;
 import com.brageast.blog.service.ArticeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -17,10 +18,11 @@ public class AriticleController {
     ArticeService articeService;
 
     @RequestMapping(value = "/articles")
-    public List<Article> getBaseAriticles(Integer current, Long size){
+    public List<BaseArticle> getBaseAriticles(Integer current, Long size){
         int ct = current == null? 0 : current;
         long sz = size == null? 10 : size;
-        Page<Article> page = new Page<>(ct, sz);
+        Page<BaseArticle> page = new Page<>(ct, sz);
+        System.out.println(page.getRecords());
         return articeService.getBaseArticle(page).getRecords();
     }
 
