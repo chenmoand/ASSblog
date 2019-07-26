@@ -20,4 +20,5 @@ public interface ArticeService extends IService<Article> {
                       @Param("describe") String describe, @Param("author") String author,
                       @Param("lable") String lable, @Param("classification") String classification,
                       @Param("content") String content, @Param("date") Date date, @Param("url") String url);
+    void deleteArtice(@Param("id") Long id);
 }

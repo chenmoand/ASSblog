@@ -1,7 +1,6 @@
 package com.brageast.blog;
 
-import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.brageast.blog.entity.BaseArticle;
+import com.alibaba.druid.filter.config.ConfigTools;
 import com.brageast.blog.mapper.ArticleMapper;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -17,11 +16,10 @@ public class BlogApplicationTests {
     private ArticleMapper articleMapper;
 
     @Test
-    public void contextLoads() {
-
-        System.out.println(articleMapper.getBaseArticle(new Page<BaseArticle>(1,5)));
-//        .getRecords().forEach(System.out::println);
-
+    public void contextLoads() throws Exception {
+        String pwd = ConfigTools.encrypt("200075xzh");
+        String p = ConfigTools.decrypt(pwd);
+        System.out.println(pwd+"\n"+p);
     }
 
 }

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.brageast.blog.mapper.UserMapper">
+    <select id="getUsers" resultType="com.brageast.blog.entity.User">
+        SELECT * FROM Blog_User
+    </select>
+    <delete id="deleteUser" parameterType="com.brageast.blog.entity.User">
+        DELETE FROM Blog_User
+        <where>
+            id=#{id}
+        </where>
+    </delete>
+    <insert id="insertUser" parameterType="com.brageast.blog.entity.User">
+        INSERT INTO Blog_User(id, name, `password`, email, `group`) VALUE
+        (#{id},#{name},#{password},#{email},#{group})
+    </insert>
+    <update id="updataUser" parameterType="com.brageast.blog.entity.User">
+        UPDATE Blog_User
+        <trim prefix="set" suffixOverrides=",">
+            <if test="name != null">name=#{name},</if>
+            <if test="password != null">`password`=#{password},</if>
+            <if test="email != null">email=#{email},</if>
+            <if test="group != null">`group`=#{group},</if>
+        </trim>
+        <where>
+            id=#{id}
+        </where>
+    </update>
+</mapper>

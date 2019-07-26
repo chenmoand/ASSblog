@@ -11,21 +11,20 @@ import java.util.List;
 
 @CrossOrigin
 @RestController
-@RequestMapping(value = "/api")
+@RequestMapping(value = "/api/article")
 public class AriticleController {
 
     @Autowired
-    ArticeService articeService;
+    private ArticeService articeService;
 
-    @RequestMapping(value = "/article/page")
+    @RequestMapping(value = "/page")
     public List<BaseArticle> getBaseAriticles(Integer current, Long size){
         int ct = current == null? 0 : current;
         long sz = size == null? 10 : size;
         Page<BaseArticle> page = new Page<>(ct, sz);
-        System.out.println(page.getRecords());
         return articeService.getBaseArticle(page).getRecords();
     }
-    @RequestMapping(value = "/article/update", method = RequestMethod.POST)
+    @RequestMapping(value = "/update", method = RequestMethod.POST)
     public Boolean updateArtice(@RequestBody Article article){
         try{
             articeService.updateArtice(
@@ -41,12 +40,22 @@ public class AriticleController {
             return false;
         }
     }
-    @RequestMapping(value = "/article")
+    @RequestMapping(value = "/delete")
+    public Boolean deleteArtice(Long id){
+        try{
+            articeService.deleteArtice(id);
+            return true;
+        } catch (Exception e){
+            e.printStackTrace();
+            return false;
+        }
+    }
+    @RequestMapping(value = "/articles")
     public Article getMoreAriticle(String url){
         return articeService.getMoreArticle(url);
     }
 
-    @RequestMapping(value = "/article/add", method = RequestMethod.POST)
+    @RequestMapping(value = "/add", method = RequestMethod.POST)
     public Boolean addAriticle(@RequestBody Article article){
         try {
             articeService.addArtice(

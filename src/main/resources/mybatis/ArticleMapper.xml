@@ -34,4 +34,10 @@
             id=#{id}
         </where>
     </update>
+    <delete id="deleteArtice" parameterType="com.brageast.blog.entity.Article">
+        DELETE FROM articeList
+        <where>
+            id= #{id}
+        </where>
+    </delete>
 </mapper>

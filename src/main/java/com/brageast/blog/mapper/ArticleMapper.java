@@ -16,4 +16,5 @@ public interface ArticleMapper extends BaseMapper<Article> {
     void updateArtice(Long id, String articleName, String describe,
                       String author, String lable, String classification,
                       String content, Date date, String url);
+    void deleteArtice(Long id);
 }
