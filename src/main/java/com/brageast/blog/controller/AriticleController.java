@@ -3,7 +3,7 @@ package com.brageast.blog.controller;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.brageast.blog.entity.Article;
 import com.brageast.blog.entity.BaseArticle;
-import com.brageast.blog.service.ArticeService;
+import com.brageast.blog.service.ArticleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,7 +15,7 @@ import java.util.List;
 public class AriticleController {
 
     @Autowired
-    private ArticeService articeService;
+    private ArticleService articeService;
 
     @RequestMapping(value = "/page")
     public List<BaseArticle> getBaseAriticles(Integer current, Long size){

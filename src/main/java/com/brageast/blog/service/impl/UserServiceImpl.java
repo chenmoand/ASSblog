@@ -6,6 +6,7 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.brageast.blog.entity.User;
 import com.brageast.blog.mapper.UserMapper;
 import com.brageast.blog.service.UserService;
+import com.brageast.blog.util.PasswordTools;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -34,14 +35,13 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         baseMapper.updataUser(id, name, pwd, email, group);
     }
 
+    @Override
+    public String getUserPassword(Integer id) {
+        return baseMapper.getUserPassword(id);
+    }
+
     public String encrypt(String password){
         if(password == null) return null;
-        String pwd = null;
-        try {
-            pwd = ConfigTools.encrypt(password);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return pwd;
+        return PasswordTools.encrypt(password);
     }
 }

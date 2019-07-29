@@ -57,6 +57,11 @@
             <artifactId>lombok</artifactId>
             <version>1.16.16</version>
         </dependency>
+        <dependency>
+            <groupId>org.apache.shiro</groupId>
+            <artifactId>shiro-spring</artifactId>
+            <version>1.4.1</version>
+        </dependency>
     </dependencies>
 
     <build>

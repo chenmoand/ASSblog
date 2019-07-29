@@ -1,9 +1,9 @@
 package com.brageast.blog.controller;
 
-import com.alibaba.druid.filter.config.ConfigTools;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.brageast.blog.entity.User;
 import com.brageast.blog.service.UserService;
+import com.brageast.blog.util.PasswordTools;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -26,12 +26,7 @@ public class UserController {
         Page<User> page = new Page<>(ct, sz);
         List<User> u = new ArrayList<>();
         userService.getUsers(page).getRecords().forEach(user -> {
-            try {
-                // 解码
-                user.setPassword(ConfigTools.decrypt(user.getPassword()));
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+            user.setPassword(PasswordTools.decrypt(user.getPassword()));
             u.add(user);
         });
         return u;

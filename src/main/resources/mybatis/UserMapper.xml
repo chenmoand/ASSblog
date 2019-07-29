@@ -6,6 +6,12 @@
     <select id="getUsers" resultType="com.brageast.blog.entity.User">
         SELECT * FROM Blog_User
     </select>
+    <select id="getUserPassword" resultType="String">
+        SELECT `password` FROM Blog_User
+        <where>
+            id=#{id}
+        </where>
+    </select>
     <delete id="deleteUser" parameterType="com.brageast.blog.entity.User">
         DELETE FROM Blog_User
         <where>
