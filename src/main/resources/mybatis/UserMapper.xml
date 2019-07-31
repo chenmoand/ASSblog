@@ -6,8 +6,8 @@
     <select id="getUsers" resultType="com.brageast.blog.entity.User">
         SELECT * FROM Blog_User
     </select>
-    <select id="getUserPassword" resultType="String">
-        SELECT `password` FROM Blog_User
+    <select id="findUser" resultType="com.brageast.blog.entity.User">
+        SELECT * FROM Blog_User
         <where>
             id=#{id}
         </where>
@@ -19,8 +19,8 @@
         </where>
     </delete>
     <insert id="insertUser" parameterType="com.brageast.blog.entity.User">
-        INSERT INTO Blog_User(id, name, `password`, email, `group`) VALUE
-        (#{id},#{name},#{password},#{email},#{group})
+        INSERT INTO Blog_User(id, name, `password`, email, `group`, `permissions`) VALUE
+        (#{id},#{name},#{password},#{email},#{group},#{permissions})
     </insert>
     <update id="updataUser" parameterType="com.brageast.blog.entity.User">
         UPDATE Blog_User
@@ -29,6 +29,7 @@
             <if test="password != null">`password`=#{password},</if>
             <if test="email != null">email=#{email},</if>
             <if test="group != null">`group`=#{group},</if>
+            <if test="permissions != null">`permissions`=#{permissions},</if>
         </trim>
         <where>
             id=#{id}

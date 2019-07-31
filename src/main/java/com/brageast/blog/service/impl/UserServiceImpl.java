@@ -1,6 +1,5 @@
 package com.brageast.blog.service.impl;
 
-import com.alibaba.druid.filter.config.ConfigTools;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.brageast.blog.entity.User;
@@ -24,20 +23,20 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
     }
 
     @Override
-    public void insertUser(Integer id, String name, String password, String email, String group) {
+    public void insertUser(Integer id, String name, String password, String email, String group, String permissions) {
         String pwd = encrypt(password);
-        baseMapper.insertUser(id, name, pwd, email, group);
+        baseMapper.insertUser(id, name, pwd, email, group, permissions);
     }
 
     @Override
-    public void updataUser(Integer id, String name, String password, String email, String group) {
+    public void updataUser(Integer id, String name, String password, String email, String group, String permissions) {
         String pwd = encrypt(password);
-        baseMapper.updataUser(id, name, pwd, email, group);
+        baseMapper.updataUser(id, name, pwd, email, group, permissions);
     }
 
     @Override
-    public String getUserPassword(Integer id) {
-        return baseMapper.getUserPassword(id);
+    public User findUser(Integer id) {
+        return baseMapper.findUser(id);
     }
 
     public String encrypt(String password){

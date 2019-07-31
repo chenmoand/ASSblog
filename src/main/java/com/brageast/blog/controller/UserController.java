@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @CrossOrigin
+// 解决跨域问题的注解
 @RestController
 @RequestMapping(value = "/api/user")
 public class UserController {
@@ -44,7 +45,7 @@ public class UserController {
     @RequestMapping(value = "/insert", method = RequestMethod.POST)
     public Boolean insertUser(@RequestBody User user) {
         try {
-            userService.insertUser(user.getId(),user.getName(),user.getPassword(),user.getEmail(),user.getGroup());
+            userService.insertUser(user.getId(),user.getName(),user.getPassword(),user.getEmail(),user.getGroup(),user.getPermissions());
             return true;
         } catch (Exception e) {
             e.printStackTrace();
@@ -54,7 +55,7 @@ public class UserController {
     @RequestMapping(value = "/updata", method = RequestMethod.POST)
     public Boolean updataUser(@RequestBody User user) {
         try {
-            userService.updataUser(user.getId(),user.getName(),user.getPassword(),user.getEmail(),user.getGroup());
+            userService.updataUser(user.getId(),user.getName(),user.getPassword(),user.getEmail(),user.getGroup(),user.getPermissions());
             return true;
         } catch (Exception e) {
             e.printStackTrace();

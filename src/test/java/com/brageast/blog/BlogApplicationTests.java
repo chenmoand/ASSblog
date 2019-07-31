@@ -26,6 +26,7 @@ public class BlogApplicationTests {
 //        String strr = PasswordTools.decrypt(str);
 //        ConfigTools.decrypt(str);
 //        System.out.println(strr);
+        userService.insertUser(10213,"chenmo","213213","2010557767@qq.com","admin","admin");
         userService.getUsers(new Page<>(0,4)).getRecords().forEach(System.out::println);
     }
 

@@ -37,13 +37,15 @@ public class CustomRealm extends AuthorizingRealm {
         }
         User user = (User)getAvailablePrincipal(principalCollection);
         Set<String> Roles = new HashSet<>(Arrays.asList(user.getGroup().split(",")));
+        Set<String> Perms = new HashSet<>(Arrays.asList(user.getPermissions().split(",")));
         SimpleAuthorizationInfo info = new SimpleAuthorizationInfo();
         info.setRoles(Roles);
-        return null;
+        info.setStringPermissions(Perms);
+        return info;
     }
 
     @Override
-    protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken authenticationToken) throws AuthenticationException {
-        return null;
+    protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken token) throws AuthenticationException {
+       return null;
     }
 }

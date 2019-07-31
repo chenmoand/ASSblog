@@ -8,8 +8,8 @@ public interface UserMapper extends BaseMapper<User> {
     Page<User> getUsers(Page<User> page);
     void deleteUser(Integer id);
     void insertUser(Integer id, String name, String password,
-                    String email, String group);
+                    String email, String group, String permissions);
     void updataUser(Integer id, String name, String password,
-                    String email, String group);
-    String getUserPassword(Integer id);
+                    String email, String group, String permissions);
+    User findUser(Integer id);
 }
