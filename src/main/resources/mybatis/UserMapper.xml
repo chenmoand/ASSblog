@@ -9,7 +9,7 @@
     <select id="findUser" resultType="com.brageast.blog.entity.User">
         SELECT * FROM Blog_User
         <where>
-            id=#{id}
+            name=#{name}
         </where>
     </select>
     <delete id="deleteUser" parameterType="com.brageast.blog.entity.User">

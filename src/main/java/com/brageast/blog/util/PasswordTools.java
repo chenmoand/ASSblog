@@ -22,6 +22,7 @@ public class PasswordTools {
             "Q9+7qaFA==";
     private static final String PRIVATE_KEY = "MFwwDQYJKoZIhvcNAQEBBQADSwAwSAJBAL+Oq0fbeX7IsCR4W4WfGSxoswHU6LyuCE3s" +
             "CixYD/yfYFwc7Mco+8H2RQbWSF/POJvtU4p+2RHcasGpaOj7CZ0CAwEAAQ==";
+    // 加密
     public static String encrypt(String str) {
         String paw = null;
         try {
@@ -31,7 +32,7 @@ public class PasswordTools {
         }
         return paw;
     }
-
+    // 解密
     public static String decrypt(String str) {
         String paw = null;
         try {

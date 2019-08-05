@@ -24,5 +24,5 @@ public interface UserService extends IService<User> {
                     @Param("email") String email, @Param("group") String group, @Param("permissions") String permissions);
     void updataUser(@Param("id") Integer id, @Param("name") String name, @Param("password") String password,
                     @Param("email") String email, @Param("group") String group, @Param("permissions") String permissions);
-    User findUser(@Param("id") Integer id);
+    User findUser(@Param("name") String name);
 }

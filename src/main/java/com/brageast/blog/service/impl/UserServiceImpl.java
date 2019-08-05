@@ -35,8 +35,8 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
     }
 
     @Override
-    public User findUser(Integer id) {
-        return baseMapper.findUser(id);
+    public User findUser(String name) {
+        return baseMapper.findUser(name);
     }
 
     public String encrypt(String password){

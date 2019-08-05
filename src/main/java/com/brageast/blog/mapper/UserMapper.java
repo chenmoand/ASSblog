@@ -11,5 +11,5 @@ public interface UserMapper extends BaseMapper<User> {
                     String email, String group, String permissions);
     void updataUser(Integer id, String name, String password,
                     String email, String group, String permissions);
-    User findUser(Integer id);
+    User findUser(String name);
 }
