@@ -5,6 +5,8 @@ import com.baomidou.mybatisplus.extension.service.IService;
 import com.brageast.blog.entity.User;
 import org.apache.ibatis.annotations.Param;
 
+import java.util.Set;
+
 public interface UserService extends IService<User> {
     /**
      *
@@ -14,15 +16,17 @@ public interface UserService extends IService<User> {
      *
      */
     Page<User> getUsers(Page<User> page);
+    boolean addUser(String name, String password,
+                    String email, Set<Integer> groups);
 
-    /**
+     /**
      * 不加@Param就报错,,,可能是我菜还是我mybatils-plus我不会用
      * 下面就是增删改查部分了
      */
-    void deleteUser(@Param("id") Integer id);
+    /*void deleteUser(@Param("id") Integer id);
     void insertUser(@Param("id") Integer id, @Param("name") String name, @Param("password") String password,
-                    @Param("email") String email, @Param("group") String group, @Param("permissions") String permissions);
+                    @Param("email") String email);
     void updataUser(@Param("id") Integer id, @Param("name") String name, @Param("password") String password,
-                    @Param("email") String email, @Param("group") String group, @Param("permissions") String permissions);
-    User findUser(@Param("name") String name);
+                    @Param("email") String email);*/
+    User findUser(String name);
 }

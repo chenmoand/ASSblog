@@ -1,17 +1,25 @@
 package com.brageast.blog.entity;
 
 import com.baomidou.mybatisplus.annotation.TableName;
-import lombok.AllArgsConstructor;
 import lombok.Data;
 
+import java.io.Serializable;
+import java.util.Set;
+
 @Data
-@AllArgsConstructor
+//@AllArgsConstructor 加这个注解就会报错
 @TableName("Blog_User")
-public class User {
+public class User implements Serializable {
     private Integer id;
     private String name;
     private String password;
     private String email;
-    private String group;
-    private String permissions;
+
+    private Set<Group> groups;
+
+//    private String permissions;
+
+//    public Set<String> getListPermissions(){
+//        return new HashSet<>(Arrays.asList(getPermissions().split(",")));
+//    }
 }

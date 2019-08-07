@@ -3,36 +3,74 @@
         PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.brageast.blog.mapper.UserMapper">
-    <select id="getUsers" resultType="com.brageast.blog.entity.User">
-        SELECT * FROM Blog_User
+
+    <resultMap id="BasisUser" type="com.brageast.blog.entity.User">
+        <id column="id" jdbcType="BIGINT" property="id" />
+        <result column="name" jdbcType="VARCHAR" property="name" />
+        <result column="password" jdbcType="VARCHAR" property="password" />
+        <result column="email" jdbcType="VARCHAR" property="email" />
+        <collection ofType="com.brageast.blog.entity.Group" property="groups">
+            <id column="group_id" jdbcType="BIGINT" property="id" />
+            <result column="group_name" jdbcType="VARCHAR" property="name" />
+            <result column="group_describe" jdbcType="VARCHAR" property="describe" />
+        </collection>
+    </resultMap>
+    <insert id="addUser">
+        INSERT INTO Blog_User(name, `password`, email) VALUE
+        (#{name},#{password},#{email})
+    </insert>
+    <insert id="addUserGroup">
+        INSERT INTO User_Group(user_id, group_id)
+        VALUES
+        <foreach collection="groups" item="item" index="index" separator=",">
+            (
+             #{user_id},
+             #{item.index}
+            )
+        </foreach>
+    </insert>
+    <select id="findUser" resultMap="BasisUser">
+        SELECT bu.id, bu.name, bu.password, bu.email, bg.id AS group_id, bg.group_name, bg.group_describe
+        FROM Blog_User AS bu
+        LEFT JOIN User_Group AS ug ON bu.id = ug.user_id
+        LEFT JOIN Blog_Group AS bg ON bg.id = ug.group_id
+        WHERE bu.name=#{name}
     </select>
-    <select id="findUser" resultType="com.brageast.blog.entity.User">
-        SELECT * FROM Blog_User
+    <select id="getUsers" resultMap="BasisUser">
+        SELECT bu.id, bu.name, bu.password, bu.email, bg.id AS group_id, bg.group_name, bg.group_describe
+        FROM Blog_User AS bu
+        LEFT JOIN User_Group AS ug ON bu.id = ug.user_id
+        LEFT JOIN Blog_Group AS bg ON bg.id = ug.group_id
+    </select>
+    <select id="getUserId" resultType="java.lang.Integer">
+        SELECT id FROM Blog_User
         <where>
             name=#{name}
         </where>
     </select>
-    <delete id="deleteUser" parameterType="com.brageast.blog.entity.User">
-        DELETE FROM Blog_User
-        <where>
-            id=#{id}
-        </where>
-    </delete>
-    <insert id="insertUser" parameterType="com.brageast.blog.entity.User">
-        INSERT INTO Blog_User(id, name, `password`, email, `group`, `permissions`) VALUE
-        (#{id},#{name},#{password},#{email},#{group},#{permissions})
-    </insert>
-    <update id="updataUser" parameterType="com.brageast.blog.entity.User">
-        UPDATE Blog_User
-        <trim prefix="set" suffixOverrides=",">
-            <if test="name != null">name=#{name},</if>
-            <if test="password != null">`password`=#{password},</if>
-            <if test="email != null">email=#{email},</if>
-            <if test="group != null">`group`=#{group},</if>
-            <if test="permissions != null">`permissions`=#{permissions},</if>
-        </trim>
-        <where>
-            id=#{id}
-        </where>
-    </update>
+    <!--
+        <delete id="deleteUser" parameterType="com.brageast.blog.entity.User">
+            DELETE FROM Blog_User
+            <where>
+                id=#{id}
+            </where>
+        </delete>
+        <insert id="insertUser" parameterType="com.brageast.blog.entity.User">
+            INSERT INTO Blog_User(id, name, `password`, email, `group`, `permissions`) VALUE
+            (#{id},#{name},#{password},#{email},#{group},#{permissions})
+        </insert>
+        <update id="updataUser" parameterType="com.brageast.blog.entity.User">
+            UPDATE Blog_User
+            <trim prefix="set" suffixOverrides=",">
+                <if test="name != null">name=#{name},</if>
+                <if test="password != null">`password`=#{password},</if>
+                <if test="email != null">email=#{email},</if>
+                <if test="group != null">`group`=#{group},</if>
+                <if test="permissions != null">`permissions`=#{permissions},</if>
+            </trim>
+            <where>
+                id=#{id}
+            </where>
+        </update>
+    -->
 </mapper>

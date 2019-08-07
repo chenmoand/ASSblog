@@ -9,31 +9,48 @@ import com.brageast.blog.util.PasswordTools;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.Set;
+
 @Service
 @AllArgsConstructor
 public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements UserService {
-    @Override
+   @Override
     public Page<User> getUsers(Page<User> page) {
         return baseMapper.getUsers(page);
     }
 
     @Override
-    public void deleteUser(Integer id) {
-        baseMapper.deleteUser(id);
+    public boolean addUser(String name, String password, String email, Set<Integer> groups) {
+        String pwd = PasswordTools.encrypt(password);
+        try {
+            baseMapper.addUser(name, pwd, email);
+            final int id = baseMapper.getUserId(name);
+            baseMapper.addUserGroup(id , groups);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+        return true;
     }
 
-    @Override
-    public void insertUser(Integer id, String name, String password, String email, String group, String permissions) {
-        String pwd = encrypt(password);
-        baseMapper.insertUser(id, name, pwd, email, group, permissions);
-    }
+    /*  @Override
+     public void deleteUser(Integer id) {
+         baseMapper.deleteUser(id);
+     }
 
-    @Override
-    public void updataUser(Integer id, String name, String password, String email, String group, String permissions) {
-        String pwd = encrypt(password);
-        baseMapper.updataUser(id, name, pwd, email, group, permissions);
-    }
+     @Override
+     public void insertUser(Integer id, String name, String password, String email, String group, String permissions) {
+         String pwd = encrypt(password);
+         baseMapper.insertUser(id, name, pwd, email, group, permissions);
+     }
 
+     @Override
+     public void updataUser(Integer id, String name, String password, String email, String group, String permissions) {
+         String pwd = encrypt(password);
+         baseMapper.updataUser(id, name, pwd, email, group, permissions);
+     }
+ */
     @Override
     public User findUser(String name) {
         return baseMapper.findUser(name);
