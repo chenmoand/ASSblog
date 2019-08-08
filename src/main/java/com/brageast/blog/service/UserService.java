@@ -11,22 +11,13 @@ public interface UserService extends IService<User> {
     /**
      *
      *  @param page
-     *  @return Page<User>
+     *  @return Page<User> 一个用户的分页
      *  例子 : getUsers(new Page<>(1, 5));
      *
      */
     Page<User> getUsers(Page<User> page);
     boolean addUser(String name, String password,
-                    String email, Set<Integer> groups);
-
-     /**
-     * 不加@Param就报错,,,可能是我菜还是我mybatils-plus我不会用
-     * 下面就是增删改查部分了
-     */
-    /*void deleteUser(@Param("id") Integer id);
-    void insertUser(@Param("id") Integer id, @Param("name") String name, @Param("password") String password,
-                    @Param("email") String email);
-    void updataUser(@Param("id") Integer id, @Param("name") String name, @Param("password") String password,
-                    @Param("email") String email);*/
+                    String email, Set<Integer> group_id);
+    boolean deleteUser(Integer id);
     User findUser(String name);
 }

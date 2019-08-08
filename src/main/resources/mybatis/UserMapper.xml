@@ -12,7 +12,7 @@
         <collection ofType="com.brageast.blog.entity.Group" property="groups">
             <id column="group_id" jdbcType="BIGINT" property="id" />
             <result column="group_name" jdbcType="VARCHAR" property="name" />
-            <result column="group_describe" jdbcType="VARCHAR" property="describe" />
+            <result column="per_describe" jdbcType="VARCHAR" property="describe" />
         </collection>
     </resultMap>
     <insert id="addUser">
@@ -22,13 +22,51 @@
     <insert id="addUserGroup">
         INSERT INTO User_Group(user_id, group_id)
         VALUES
-        <foreach collection="groups" item="item" index="index" separator=",">
+        <foreach collection="group_id" item="item" index="index" separator=",">
             (
              #{user_id},
-             #{item.index}
+             #{item}
             )
         </foreach>
     </insert>
+    <update id="updateUser">
+        UPDATE Blog_User
+        <trim prefix="set" suffixOverrides=",">
+            <if test="name != null">name=#{name},</if>
+            <if test="password != null">`password`=#{password},</if>
+            <if test="email != null">email=#{email},</if>
+        </trim>
+        <where>
+            id=#{id}
+        </where>
+    </update>
+    <update id="updateUserGroup">
+        UPDATE User_Group
+        <trim prefix="set" suffixOverrides=",">
+            <if test="group_id!=null">group_id=#{group_id}</if>
+        </trim>
+        <where>
+            user_id=#{user_id}
+        </where>
+    </update>
+    <delete id="deleteUser">
+        DELETE FROM Blog_User
+        <where>
+            id=#{id}
+        </where>
+    </delete>
+    <delete id="deleteAllUserGroup">
+        DELETE FROM User_Group
+        <where>
+            user_id = #{user_id}
+        </where>
+    </delete>
+    <delete id="deleteUserGroup">
+        DELETE FROM User_Group
+        <where>
+            user_id=#{user_id}, group_id=#{group_id}
+        </where>
+    </delete>
     <select id="findUser" resultMap="BasisUser">
         SELECT bu.id, bu.name, bu.password, bu.email, bg.id AS group_id, bg.group_name, bg.group_describe
         FROM Blog_User AS bu
@@ -48,29 +86,4 @@
             name=#{name}
         </where>
     </select>
-    <!--
-        <delete id="deleteUser" parameterType="com.brageast.blog.entity.User">
-            DELETE FROM Blog_User
-            <where>
-                id=#{id}
-            </where>
-        </delete>
-        <insert id="insertUser" parameterType="com.brageast.blog.entity.User">
-            INSERT INTO Blog_User(id, name, `password`, email, `group`, `permissions`) VALUE
-            (#{id},#{name},#{password},#{email},#{group},#{permissions})
-        </insert>
-        <update id="updataUser" parameterType="com.brageast.blog.entity.User">
-            UPDATE Blog_User
-            <trim prefix="set" suffixOverrides=",">
-                <if test="name != null">name=#{name},</if>
-                <if test="password != null">`password`=#{password},</if>
-                <if test="email != null">email=#{email},</if>
-                <if test="group != null">`group`=#{group},</if>
-                <if test="permissions != null">`permissions`=#{permissions},</if>
-            </trim>
-            <where>
-                id=#{id}
-            </where>
-        </update>
-    -->
 </mapper>

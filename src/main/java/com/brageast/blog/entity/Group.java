@@ -3,6 +3,8 @@ package com.brageast.blog.entity;
 
 import lombok.Data;
 
+import java.util.Set;
+
 @Data
 public class Group {
 
@@ -11,7 +13,7 @@ public class Group {
 //    private Integer grade; // 组的权限等级
     private String describe; // 组的描述
 
-//    private Set<Permissions> permissions; // 组的权限
+    private Set<Permissions> permissions; // 组的权限
 //    private String father; // 组的父组只能有一个
 
 }

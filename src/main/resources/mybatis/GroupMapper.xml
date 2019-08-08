@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.brageast.blog.mapper.GroupMapper">
+    <resultMap id="BasicGroup" type="com.brageast.blog.entity.Group">
+        <id column="id" jdbcType="BIGINT" property="id" />
+        <result column="group_name" jdbcType="VARCHAR" property="name" />
+        <result column="group_describe" jdbcType="VARCHAR" property="describe" />
+        <collection property="permissions" ofType="com.brageast.blog.entity.Permissions">
+            <id column="bp_id" jdbcType="BIGINT" property="id" />
+            <result column="per_name" jdbcType="VARCHAR" property="name" />
+            <result column="group_descirbe" jdbcType="VARCHAR" property="describe" />
+        </collection>
+    </resultMap>
+    <select id="getGroups" resultMap="BasicGroup">
+        SELECT bg.id, bg.group_name, bg.group_describe, bp.id AS bp_id, bp.per_name, bp.per_describe
+        FROM Blog_Group AS bg
+        LEFT JOIN Group_Permissions AS gp ON bg.id = gp.group_id
+        LEFT JOIN Blog_Permissions AS bp ON bp.id = gp.per_id
+    </select>
+    <select id="findGroup" resultMap="BasicGroup">
+        SELECT bg.id, bg.group_name, bg.group_describe, bp.id AS bp_id, bp.per_name, bp.per_describe
+        FROM Blog_Group AS bg
+        LEFT JOIN Group_Permissions AS gp ON bg.id = gp.group_id
+        LEFT JOIN Blog_Permissions AS bp ON bp.id = gp.per_id
+        <where>
+            bg.id=#{id}
+        </where>
+    </select>
+</mapper>

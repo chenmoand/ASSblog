@@ -1,0 +1,31 @@
+spring:
+  jackson:
+    date-format: yyyy-MM-dd
+    time-zone: GMT+8
+  datasource:
+    url: jdbc:mysql://xxx.xxx.xxx.xxx:3306/xxx?useUnicode=true&characterEncoding=utf8&useSSL=false
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    password: xxxxxxxx
+    type: com.alibaba.druid.pool.DruidDataSource
+    druid:
+      filters:
+      # 初始化时建立的连接数
+      initial-size: 5
+      # 最大连接数
+      max-active: 20
+      # 最小连接数
+      min-idle: 5
+      pool-prepared-statements: false
+      max-pool-prepared-statement-per-connection-size: -1
+      stat-view-servlet:
+        enabled: true
+      filter:
+        stat:
+          enabled: true
+      web-stat-filter:
+        enabled: true
+server:
+  port: 8848
+mybatis-plus:
+  mapper-locations: classpath*:mybatis/*Mapper.xml

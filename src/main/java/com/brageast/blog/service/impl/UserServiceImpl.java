@@ -21,12 +21,25 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
 
     @Override
     public boolean addUser(String name, String password, String email, Set<Integer> groups) {
+        // 加密密码
         String pwd = PasswordTools.encrypt(password);
         try {
             baseMapper.addUser(name, pwd, email);
             final int id = baseMapper.getUserId(name);
             baseMapper.addUserGroup(id , groups);
 
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public boolean deleteUser(Integer id) {
+        try {
+            baseMapper.deleteUser(id); // 先删除用户
+            baseMapper.deleteAllUserGroup(id); // 再删除用户所有组
         } catch (Exception e) {
             e.printStackTrace();
             return false;

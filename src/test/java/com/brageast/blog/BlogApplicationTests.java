@@ -1,10 +1,13 @@
 package com.brageast.blog;
 
-import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.brageast.blog.entity.User;
+import com.brageast.blog.mapper.GroupMapper;
+import com.brageast.blog.mapper.PermissionsMapper;
 import com.brageast.blog.service.ArticleService;
 import com.brageast.blog.service.UserService;
+import com.brageast.blog.util.EntityUtil;
 import com.brageast.blog.util.JwtUtil;
+import com.brageast.blog.util.entity.Combination;
 import io.jsonwebtoken.Claims;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -12,7 +15,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Set;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -22,6 +27,10 @@ public class BlogApplicationTests {
     private ArticleService articleService;
     @Autowired
     private UserService userService;
+    @Autowired(required=false)
+    private GroupMapper groupMapper;
+    @Autowired(required=false)
+    private PermissionsMapper permissionsMapper;
 
     @Test
     public void contextLoads() throws Exception {
@@ -54,4 +63,23 @@ public class BlogApplicationTests {
                 new HashSet<Integer>(){{add(1); add(2);}});
     }
 
+    @Test
+    public void B(){
+        userService.deleteUser(4);
+    }
+    @Test
+    public void C(){
+//        groupMapper.getGroups(new Page<>(1, 5)).getRecords().forEach(System.out::println);
+        System.out.println(groupMapper.findGroup(2));
+    }
+    @Test
+    public void E(){
+
+        permissionsMapper.addPermissions(EntityUtil.getEntity("abc","bcd"));
+    }
+
+    @Test
+    public void H(){
+        permissionsMapper.deletePermissions(3);
+    }
 }
