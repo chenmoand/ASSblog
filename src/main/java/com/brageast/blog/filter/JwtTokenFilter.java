@@ -6,7 +6,6 @@ import com.brageast.blog.util.JwtUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
@@ -16,12 +15,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-//@Slf4j
-//@Component
+@Slf4j
+@Component
 public class JwtTokenFilter extends OncePerRequestFilter {
 
-    @Autowired
-    private UserDetailsService UserDetailsService;
+//    @Autowired
+//    private UserDetailsService UserDetailsService;
     @Autowired
     private UserService userService;
 

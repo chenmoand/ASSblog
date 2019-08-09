@@ -1,11 +1,10 @@
 package com.brageast.blog.entity;
 
 import com.baomidou.mybatisplus.annotation.TableName;
-import lombok.AllArgsConstructor;
 import lombok.Data;
 
 @Data
-@AllArgsConstructor
+//@AllArgsConstructor
 @TableName("articlelist")
 public class BaseArticle {
     private String articleName;

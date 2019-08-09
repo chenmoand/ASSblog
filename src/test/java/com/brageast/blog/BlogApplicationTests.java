@@ -1,5 +1,7 @@
 package com.brageast.blog;
 
+import com.alibaba.fastjson.JSON;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.brageast.blog.entity.User;
 import com.brageast.blog.mapper.GroupMapper;
 import com.brageast.blog.mapper.PermissionsMapper;
@@ -7,7 +9,8 @@ import com.brageast.blog.service.ArticleService;
 import com.brageast.blog.service.UserService;
 import com.brageast.blog.util.EntityUtil;
 import com.brageast.blog.util.JwtUtil;
-import com.brageast.blog.util.entity.Combination;
+import com.brageast.blog.util.entity.ResultState;
+import com.brageast.blog.util.entity.State;
 import io.jsonwebtoken.Claims;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -15,9 +18,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import java.util.HashMap;
 import java.util.HashSet;
-import java.util.Set;
+import java.util.Map;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -54,7 +56,8 @@ public class BlogApplicationTests {
             System.out.println(token);
         }
         Claims body = JwtUtil.getClaims(token);
-        System.out.println(body);
+        Map m = JSON.parseObject(JSON.toJSONString(body), Map.class);
+        System.out.println(m);
     }
 
     @Test
@@ -80,6 +83,14 @@ public class BlogApplicationTests {
 
     @Test
     public void H(){
-        permissionsMapper.deletePermissions(3);
+//        permissionsMapper.deletePermissions(3);
+        articleService.getBaseArticle(new Page<>(1,5))
+        .getRecords().forEach(System.out::println);
     }
+    @Test
+    public void I(){
+        System.out.println(new ResultState(State.NODEFINED, "您无法访问这个API或者页面").toJsonString());
+
+    }
+
 }

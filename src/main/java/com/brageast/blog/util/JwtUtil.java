@@ -5,9 +5,11 @@ import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.JwtException;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
+import lombok.extern.slf4j.Slf4j;
 
 import java.util.Date;
 
+@Slf4j
 public class JwtUtil {
     public static final long EXPIRATIONTIME = 86_400_000;   // 过期时间 默认一天
     public static final String SECRET = "X2@0ZhlHeng";  // 密码
@@ -46,6 +48,7 @@ public class JwtUtil {
                     .parseClaimsJws(token).getBody();
 
         } catch(JwtException e) {
+//            log.error(e.getMessage());
             return null;
         }
 

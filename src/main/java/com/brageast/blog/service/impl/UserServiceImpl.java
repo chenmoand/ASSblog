@@ -7,11 +7,13 @@ import com.brageast.blog.mapper.UserMapper;
 import com.brageast.blog.service.UserService;
 import com.brageast.blog.util.PasswordTools;
 import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.Set;
 
 @Service
+@Slf4j
 @AllArgsConstructor
 public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements UserService {
    @Override
@@ -29,7 +31,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
             baseMapper.addUserGroup(id , groups);
 
         } catch (Exception e) {
-            e.printStackTrace();
+            log.error(e.getMessage());
             return false;
         }
         return true;
@@ -41,7 +43,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
             baseMapper.deleteUser(id); // 先删除用户
             baseMapper.deleteAllUserGroup(id); // 再删除用户所有组
         } catch (Exception e) {
-            e.printStackTrace();
+            log.error(e.getMessage());
             return false;
         }
         return true;

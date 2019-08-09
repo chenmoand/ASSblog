@@ -7,11 +7,13 @@ import com.brageast.blog.entity.BaseArticle;
 import com.brageast.blog.mapper.ArticleMapper;
 import com.brageast.blog.service.ArticleService;
 import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
 
 @Service
+@Slf4j
 @AllArgsConstructor
 public class ArticleServiceImpl extends ServiceImpl<ArticleMapper, Article> implements ArticleService {
 

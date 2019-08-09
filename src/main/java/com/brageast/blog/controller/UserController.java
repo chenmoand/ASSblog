@@ -15,7 +15,6 @@ import java.util.List;
 @RestController
 @RequestMapping(value = "/api/user")
 public class UserController {
-/*
     //会报错改成false 就不会了
     @Autowired
     private UserService userService;
@@ -32,7 +31,7 @@ public class UserController {
         });
         return u;
     }
-    @RequestMapping(value = "/delete")
+   /* @RequestMapping(value = "/delete")
     public Boolean deleteUser(Integer id) {
         try {
             userService.deleteUser(id);

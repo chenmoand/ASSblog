@@ -1,23 +1,13 @@
 package com.brageast.blog.service.impl;
 
-import com.brageast.blog.entity.User;
-import com.brageast.blog.service.UserService;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
-
-import javax.management.relation.Role;
-import java.util.List;
 
 @Slf4j
 @Service
-public class JwtUserDetailsServiceImpl implements UserDetailsService {
+public class JwtUserDetailsServiceImpl /*implements UserDetailsService*/ {
 
-    @Autowired
+    /*@Autowired
     private UserService userService;
 
     @Override
@@ -28,5 +18,5 @@ public class JwtUserDetailsServiceImpl implements UserDetailsService {
 //                .map(Role::getRoleName)
 
         return null;
-    }
+    }*/
 }

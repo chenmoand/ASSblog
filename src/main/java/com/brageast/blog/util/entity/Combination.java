@@ -1,5 +1,6 @@
 package com.brageast.blog.util.entity;
 
+import com.alibaba.fastjson.JSON;
 import lombok.Data;
 
 /**
@@ -13,4 +14,7 @@ import lombok.Data;
 public class Combination<E,T> {
     private E eType;
     private T tType;
+    public String toJsonString() {
+        return JSON.toJSONString(this);
+    }
 }

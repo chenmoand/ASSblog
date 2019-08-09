@@ -6,7 +6,11 @@ import com.brageast.blog.entity.Permissions;
 import com.brageast.blog.mapper.PermissionsMapper;
 import com.brageast.blog.service.PermissionService;
 import com.brageast.blog.util.entity.Combination;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Service;
 
+@Slf4j
+@Service
 public class PermissionServiceImpl
         extends ServiceImpl<PermissionsMapper, Permissions>
         implements PermissionService {
@@ -26,7 +30,7 @@ public class PermissionServiceImpl
         try {
             baseMapper.addPermissions(prs);
         } catch (Exception e) {
-            e.printStackTrace();
+            log.error(e.getMessage());
             return false;
         }
         return true;
@@ -38,7 +42,7 @@ public class PermissionServiceImpl
             baseMapper.deleteAllGroupPermissions(id);
             baseMapper.deletePermissions(id);
         } catch (Exception e) {
-            e.printStackTrace();
+            log.error(e.getMessage());
             return false;
         }
         return true;
