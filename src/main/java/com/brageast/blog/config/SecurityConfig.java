@@ -2,13 +2,14 @@ package com.brageast.blog.config;
 
 import com.brageast.blog.filter.GustAccessDenyFilter;
 import com.brageast.blog.filter.UserAccessDenyFilter;
-import com.brageast.blog.service.UserService;
+import com.brageast.blog.util.MyPasswordEncoder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.web.cors.CorsUtils;
 
 @Configuration
@@ -16,18 +17,23 @@ import org.springframework.web.cors.CorsUtils;
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
-    @Autowired
-    private UserService userService;
+    @Autowired // 自己的密码加密器
+    private MyPasswordEncoder myPasswordEncoder;
     @Autowired // 用户无法访问
     private UserAccessDenyFilter rewriteAccessDenyFilter;
     @Autowired // 游客无法访问
     private GustAccessDenyFilter gustAccessDenyFilter;
 
+
     protected void configure(HttpSecurity http) throws Exception {
+        // 基于token，不需要csrf
         http.csrf().disable()
-                .authorizeRequests()
+                // 基于token，不需要session
+                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
+                .authorizeRequests() // 开始设置权限
                 .antMatchers("/druid/**").anonymous()
                 .antMatchers("/hello").hasRole("admin")
+                // 除上面外的所有请求全部放开
                 .anyRequest().authenticated();
 
         // 无权限的走这里
@@ -39,8 +45,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.authorizeRequests().requestMatchers(CorsUtils::isPreFlightRequest).permitAll();
     }
 
-//    @Override
-//    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-//        auth.authenticationProvider(new CustomAuthenticationProvider());
-//    }
+
+
 }

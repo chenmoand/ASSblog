@@ -1,7 +1,9 @@
 package com.brageast.blog.util;
 
 import com.alibaba.druid.filter.config.ConfigTools;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 public class PasswordTools {
 //    private static String[] keyPair;
 //    获取公钥和私钥 keyPair[1] 是公钥 keyPair[0]是私钥;
@@ -28,7 +30,7 @@ public class PasswordTools {
         try {
             paw = ConfigTools.encrypt(PUBLIC_KEY, str);
         } catch (Exception e) {
-            e.printStackTrace();
+            log.error(e.getMessage());
         }
         return paw;
     }
@@ -38,7 +40,7 @@ public class PasswordTools {
         try {
             paw = ConfigTools.decrypt(PRIVATE_KEY, str);
         } catch (Exception e) {
-            e.printStackTrace();
+            log.error(e.getMessage());
         }
         return paw;
     }

@@ -9,18 +9,20 @@ import com.brageast.blog.service.ArticleService;
 import com.brageast.blog.service.UserService;
 import com.brageast.blog.util.EntityUtil;
 import com.brageast.blog.util.JwtUtil;
-import com.brageast.blog.util.entity.ResultState;
-import com.brageast.blog.util.entity.State;
 import io.jsonwebtoken.Claims;
+import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Map;
 
+@Slf4j
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class BlogApplicationTests {
@@ -47,6 +49,7 @@ public class BlogApplicationTests {
         User u = userService.findUser("阿三打撒");
         System.out.println(u);
 //        userService.getUsers(new Page<>(1, 10)).getRecords().forEach(System.out::println);
+        System.out.println("");
     }
     @Test
     public void Jsontest(){
@@ -89,7 +92,20 @@ public class BlogApplicationTests {
     }
     @Test
     public void I(){
-        System.out.println(new ResultState(State.NODEFINED, "您无法访问这个API或者页面").toJsonString());
+//        System.out.println(new ResultState(State.NODEFINED, "您无法访问这个API或者页面").toJsonString());
+
+//        EntityUtil.println("str",new Date(), "15656", 454546);
+        EntityUtil.log(log::info, 1223,"demo", new Date());
+    }
+    @Test
+    public void Z(){
+        // 不知道这类怎吗玩所以我自己测试一下
+        BCryptPasswordEncoder bpe = new BCryptPasswordEncoder();
+        String s = bpe.encode("demo");
+        System.out.println(s);
+        CharSequence c = "demo";
+        System.out.println(bpe.matches("demo", s));
+
 
     }
 
