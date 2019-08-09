@@ -1,18 +1,22 @@
 package com.brageast.blog.entity.jwt;
 
-public class JwtUser /*implements UserDetails*/ {
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
-   /* private Integer state;
+import java.util.Collection;
+
+public class JwtUser implements UserDetails {
+
     private String username;
     private String password;
     private Collection<? extends GrantedAuthority> authorities;
 
     public JwtUser(){};
 
-    public JwtUser(String username, String password, Integer state, Collection<? extends GrantedAuthority> authorities){
+    public JwtUser(String username, String password, Collection<? extends GrantedAuthority> authorities){
         this.username = username;
         this.password = password;
-        this.state = state;
         this.authorities = authorities;
     }
 
@@ -51,5 +55,5 @@ public class JwtUser /*implements UserDetails*/ {
     @Override
     public boolean isEnabled() {
         return true;
-    }*/
+    }
 }

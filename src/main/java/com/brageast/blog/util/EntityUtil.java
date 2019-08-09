@@ -37,10 +37,10 @@ public class EntityUtil {
         return sb.toString();
     }
     public static void println(Object... objs) {
-        System.out.println(toString(objs));
+        log(System.out::println, objs);
     }
     public static void print(Object... objs) {
-        System.out.print(toString(objs));
+        log(System.out::print, objs);
     }
 
     /**

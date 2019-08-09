@@ -95,7 +95,7 @@ public class BlogApplicationTests {
 //        System.out.println(new ResultState(State.NODEFINED, "您无法访问这个API或者页面").toJsonString());
 
 //        EntityUtil.println("str",new Date(), "15656", 454546);
-        EntityUtil.log(log::info, 1223,"demo", new Date());
+        EntityUtil.log(log::info, 1+9,"demo", new Date());
     }
     @Test
     public void Z(){
