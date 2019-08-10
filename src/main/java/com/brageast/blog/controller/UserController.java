@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.brageast.blog.entity.User;
 import com.brageast.blog.service.UserService;
 import com.brageast.blog.util.PasswordTools;
+import com.brageast.blog.util.entity.ResultState;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -30,6 +31,10 @@ public class UserController {
             u.add(user);
         });
         return u;
+    }
+    @RequestMapping(value = "/login", method = RequestMethod.POST)
+    public ResultState login(@RequestBody User user) {
+        return userService.login(user.getName(), user.getPassword());
     }
    /* @RequestMapping(value = "/delete")
     public Boolean deleteUser(Integer id) {

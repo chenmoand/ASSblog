@@ -10,6 +10,7 @@ import java.util.Set;
  * @Author chenmo
  * 这是一些对实体操作的类
  * 自己创建点语法糖qwq
+ * 没有什么实际意义,仅此娱乐
  */
 
 public class EntityUtil {
@@ -32,8 +33,8 @@ public class EntityUtil {
     // 向Python 那样输出
     // 将+号连接符试图换成逗号qwq
     public static String toString(Object... objs){
-        StringBuffer sb  = new StringBuffer();
-        Arrays.asList(objs).forEach(val -> sb.append(val.toString()));
+        StringBuffer sb = new StringBuffer();
+        Arrays.asList(objs).forEach(sb::append);
         return sb.toString();
     }
     public static void println(Object... objs) {

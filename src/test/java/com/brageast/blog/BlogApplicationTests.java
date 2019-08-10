@@ -117,7 +117,7 @@ public class BlogApplicationTests {
     @Test
     public void  K(){
 //        String port = environment.getProperty("server.port");
-        System.out.println(serverConfig.getPort());
+        EntityUtil.println("dadasd","2323",22, false);
     }
 
 }

@@ -17,6 +17,6 @@ public class UserAccessDenyFilter implements AccessDeniedHandler {
     public void handle(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, AccessDeniedException e) throws IOException, ServletException {
         httpServletResponse.setContentType("application/json;charset=utf-8");
         httpServletResponse.setCharacterEncoding("UTF-8");
-        httpServletResponse.getWriter().write(new ResultState(State.NODEFINED, "您无法访问这个API或者页面").toJsonString());
+        httpServletResponse.getWriter().write(new ResultState(State.NODEFINED, "您没有权限访问API或者页面").toJsonString());
     }
 }

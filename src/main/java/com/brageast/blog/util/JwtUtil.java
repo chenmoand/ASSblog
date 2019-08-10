@@ -29,7 +29,7 @@ public class JwtUtil {
                     .setIssuedAt(new Date()) //设置创建时间
                     .signWith(SignatureAlgorithm.HS512, SECRET) // 签名and算法
                     .claim("group", user.getGroups()) // 设置group组
-                    .setExpiration(new Date(System.currentTimeMillis() + EXPIRATIONTIME)) // 设置有效时间
+                    .setExpiration(new Date(System.currentTimeMillis() + EXPIRATIONTIME * 7)) // 设置有效时间
                     .compact();
 
     }
@@ -68,7 +68,7 @@ public class JwtUtil {
     public static Date getTokeExpiration(String token) {
         return getClaims(token).getExpiration();
     }
-    //检查是否过期
+    // 检查是否过期 没过期返回false
     public static boolean isTokenExpired(String token) {
         final Date expiration = getTokeExpiration(token);
         return expiration.before(new Date());

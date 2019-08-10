@@ -5,9 +5,13 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.brageast.blog.entity.User;
 import com.brageast.blog.mapper.UserMapper;
 import com.brageast.blog.service.UserService;
-import com.brageast.blog.util.PasswordTools;
+import com.brageast.blog.util.JwtUtil;
+import com.brageast.blog.util.MyPasswordEncoder;
+import com.brageast.blog.util.entity.ResultState;
+import com.brageast.blog.util.entity.State;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Set;
@@ -16,7 +20,11 @@ import java.util.Set;
 @Slf4j
 @AllArgsConstructor
 public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements UserService {
-   @Override
+
+    @Autowired
+    private MyPasswordEncoder myPasswordEncoder;
+
+    @Override
     public Page<User> getUsers(Page<User> page) {
         return baseMapper.getUsers(page);
     }
@@ -24,7 +32,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
     @Override
     public boolean addUser(String name, String password, String email, Set<Integer> groups) {
         // 加密密码
-        String pwd = PasswordTools.encrypt(password);
+        String pwd = myPasswordEncoder.encode(password);
         try {
             baseMapper.addUser(name, pwd, email);
             final int id = baseMapper.getUserId(name);
@@ -49,30 +57,19 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         return true;
     }
 
-    /*  @Override
-     public void deleteUser(Integer id) {
-         baseMapper.deleteUser(id);
-     }
-
-     @Override
-     public void insertUser(Integer id, String name, String password, String email, String group, String permissions) {
-         String pwd = encrypt(password);
-         baseMapper.insertUser(id, name, pwd, email, group, permissions);
-     }
-
-     @Override
-     public void updataUser(Integer id, String name, String password, String email, String group, String permissions) {
-         String pwd = encrypt(password);
-         baseMapper.updataUser(id, name, pwd, email, group, permissions);
-     }
- */
     @Override
     public User findUser(String name) {
         return baseMapper.findUser(name);
     }
 
-    public String encrypt(String password){
-        if(password == null) return null;
-        return PasswordTools.encrypt(password);
+    @Override
+    public ResultState login(String name, String password) {
+        if(name == null && password ==null) return new ResultState(State.FAIL,"用户名或者密码不能为空");
+        User user = baseMapper.findUser(name);
+        if(user == null) return new ResultState(State.FAIL,"用户不存在");
+        if(!myPasswordEncoder.matches(user.getPassword(), password)) return new ResultState(State.FAIL,"密码错误");
+        String token = JwtUtil.builder(user);
+        return new ResultState(State.SUCCESS,"成功登陆", token);
     }
+
 }

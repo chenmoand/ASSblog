@@ -3,7 +3,7 @@ package com.brageast.blog.service;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.brageast.blog.entity.User;
-import org.apache.ibatis.annotations.Param;
+import com.brageast.blog.util.entity.ResultState;
 
 import java.util.Set;
 
@@ -20,4 +20,5 @@ public interface UserService extends IService<User> {
                     String email, Set<Integer> group_id);
     boolean deleteUser(Integer id);
     User findUser(String name);
+    ResultState login(String name, String password);
 }

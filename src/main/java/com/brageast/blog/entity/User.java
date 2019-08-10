@@ -3,6 +3,7 @@ package com.brageast.blog.entity;
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
 
+import javax.validation.constraints.Email;
 import java.io.Serializable;
 import java.util.Set;
 
@@ -13,6 +14,7 @@ public class User implements Serializable {
     private Integer id;
     private String name;
     private String password;
+    @Email
     private String email;
 
     private Set<Group> groups;
