@@ -16,8 +16,6 @@ public class JwtUtil {
     public static final String TOKEN_PREFIX = "Bearer"; // Token前缀
     public static final String HEADER_STRING = "Authorization"; // 存放Token的Header Key
 
-
-
     /**
      * @param user
      * @return String
@@ -54,6 +52,14 @@ public class JwtUtil {
 
         return body;
     }
+    public static boolean isExistToken(String token){
+        if (getClaims(token) == null) return false;
+        return true;
+    }
+    public static boolean isExistToken(Claims token){
+        if (token == null) return false;
+        return true;
+    }
 
     public static String getTokeSubject(String token) {
         return getClaims(token).getSubject();
@@ -63,7 +69,7 @@ public class JwtUtil {
         return getClaims(token).getExpiration();
     }
     //检查是否过期
-    public static Boolean isTokenExpired(String token) {
+    public static boolean isTokenExpired(String token) {
         final Date expiration = getTokeExpiration(token);
         return expiration.before(new Date());
     }

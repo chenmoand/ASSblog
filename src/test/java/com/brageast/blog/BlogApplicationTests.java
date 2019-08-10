@@ -2,6 +2,7 @@ package com.brageast.blog;
 
 import com.alibaba.fastjson.JSON;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.brageast.blog.config.ServerConfig;
 import com.brageast.blog.entity.User;
 import com.brageast.blog.mapper.GroupMapper;
 import com.brageast.blog.mapper.PermissionsMapper;
@@ -105,8 +106,18 @@ public class BlogApplicationTests {
         System.out.println(s);
         CharSequence c = "demo";
         System.out.println(bpe.matches("demo", s));
+//        FastList
 
+    }
 
+//    @Autowired
+//    private Environment environment;
+    @Autowired
+    private ServerConfig serverConfig;
+    @Test
+    public void  K(){
+//        String port = environment.getProperty("server.port");
+        System.out.println(serverConfig.getPort());
     }
 
 }
