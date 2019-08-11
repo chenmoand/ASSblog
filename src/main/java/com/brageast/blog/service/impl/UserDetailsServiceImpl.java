@@ -24,7 +24,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String name) throws UsernameNotFoundException {
-        User user = userService.findUser(name);
+        User user = (User) userService.findUser(name).getData();
         if(user == null) throw new UsernameNotFoundException(name + " 用户不存在");
         List<SimpleGrantedAuthority> colle = user.getGroups().stream()
                 .map(Group::getName)

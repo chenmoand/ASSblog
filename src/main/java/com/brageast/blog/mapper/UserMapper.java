@@ -3,7 +3,6 @@ package com.brageast.blog.mapper;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.brageast.blog.entity.User;
-import org.apache.ibatis.annotations.Param;
 
 import java.util.Set;
 
@@ -20,8 +19,6 @@ public interface UserMapper extends BaseMapper<User> {
     void deleteUser(Integer id);
     // 删除所有用户组
     void deleteAllUserGroup(Integer user_id);
-    /*void insertUser(Integer id, String name, String password,
-                    String email, String group, String permissions);*/
     // 更新用户信息
     void updateUser(Integer id, String name, String password, String email);
     // 更新用户组

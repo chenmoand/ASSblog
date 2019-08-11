@@ -16,9 +16,9 @@ public interface UserService extends IService<User> {
      *
      */
     Page<User> getUsers(Page<User> page);
-    boolean addUser(String name, String password,
+    ResultState addUser(String name, String password,
                     String email, Set<Integer> group_id);
-    boolean deleteUser(Integer id);
-    User findUser(String name);
+    ResultState deleteUser(Integer id);
+    ResultState findUser(String name);
     ResultState login(String name, String password);
 }

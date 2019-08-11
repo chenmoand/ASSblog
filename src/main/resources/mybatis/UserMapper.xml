@@ -12,7 +12,7 @@
         <collection ofType="com.brageast.blog.entity.Group" property="groups">
             <id column="group_id" jdbcType="BIGINT" property="id" />
             <result column="group_name" jdbcType="VARCHAR" property="name" />
-            <result column="per_describe" jdbcType="VARCHAR" property="describe" />
+            <result column="group_describe" jdbcType="VARCHAR" property="describe" />
         </collection>
     </resultMap>
     <insert id="addUser">

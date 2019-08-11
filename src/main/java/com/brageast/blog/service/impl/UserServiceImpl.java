@@ -30,7 +30,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
     }
 
     @Override
-    public boolean addUser(String name, String password, String email, Set<Integer> groups) {
+    public ResultState addUser(String name, String password, String email, Set<Integer> groups) {
         // 加密密码
         String pwd = myPasswordEncoder.encode(password);
         try {
@@ -40,26 +40,33 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
 
         } catch (Exception e) {
             log.error(e.getMessage());
-            return false;
+            return new ResultState(State.FAIL, "用户创建失败");
         }
-        return true;
+        return new ResultState(State.SUCCESS, "用户创建成功");
     }
 
     @Override
-    public boolean deleteUser(Integer id) {
+    public ResultState deleteUser(Integer id) {
         try {
             baseMapper.deleteUser(id); // 先删除用户
             baseMapper.deleteAllUserGroup(id); // 再删除用户所有组
         } catch (Exception e) {
             log.error(e.getMessage());
-            return false;
+            return new ResultState(State.FAIL, "用户删除失败");
         }
-        return true;
+        return new ResultState(State.SUCCESS, "用户删除");
     }
 
     @Override
-    public User findUser(String name) {
-        return baseMapper.findUser(name);
+    public ResultState findUser(String name) {
+        User user;
+        try {
+            user = baseMapper.findUser(name);
+        } catch (Exception e) {
+            log.error(e.getMessage());
+            return new ResultState(State.FAIL,"系统错误", null);
+        }
+        return new ResultState(State.SUCCESS,"用户信息如下", user);
     }
 
     @Override

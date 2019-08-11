@@ -47,14 +47,14 @@ public class BlogApplicationTests {
         userService.insertUser(10213,"chenmo","213213","2010557767@qq.com","admin","admin");
         userService.getUsers(new Page<>(0,4)).getRecords().forEach(System.out::println);*/
 
-        User u = userService.findUser("阿三打撒");
+        User u = (User) userService.findUser("阿三打撒").getData();
         System.out.println(u);
 //        userService.getUsers(new Page<>(1, 10)).getRecords().forEach(System.out::println);
         System.out.println("");
     }
     @Test
     public void Jsontest(){
-        User admin = userService.findUser("chenmo");
+        User admin = (User) userService.findUser("阿三打撒").getData();
         String token = JwtUtil.builder(admin);
         if(admin != null) {
             System.out.println(token);
