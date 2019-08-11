@@ -9,14 +9,15 @@
 >
 >  前端地址: [ReactBlog](https://github.com/chenmoand/ReactBlog)
 
-### 如何使用
+### 一, 如何使用
 
 - git clone https://github.com/chenmoand/ASSblog.git 下载项目
 - cd ASSblog 进入项目目录
+- 将**sql/*.sql** 输入到你的数据库内, 名字类型可自行改动,不过需要修改*Mapper.xml文件
 - 将**src/main/resources/application-test.yml**文件修改自己的数据,并将-test去掉
 - 配置完成后就可以启动项目
 
-### 用到了什嘛
+### 二, 用到了什嘛
 
 1. Mybatis-plus 数据库连接简化
 
@@ -26,7 +27,7 @@
 
 4. Security + JWT web请求检测
 
-### 项目结构 
+### 三, 项目结构 
 
 ```
 |-- com
@@ -82,7 +83,7 @@
 
 ~~tree指令生成~~ 2019.8.11 文件目录更新
 
-### 踩坑记录
+### 四, 踩坑记录
 
 我把他单独拿到了一个md文件 **[Chick Here](./踩坑.md)**
 
