@@ -3,9 +3,9 @@
     <h3><center>一个简单的SpringBoot博客后端</center><h3>
 </h1>
 
-![GitHub](https://img.shields.io/github/license/chenmoand/ASSblog)![GitHub last commit (branch)](https://img.shields.io/github/last-commit/chenmoand/ASSblog/master)![GitHub stars](https://img.shields.io/github/stars/chenmoand/ASSblog)
+![GitHub](https://img.shields.io/github/license/chenmoand/ASSblog)  ![GitHub last commit (branch)](https://img.shields.io/github/last-commit/chenmoand/ASSblog/master)  ![GitHub stars](https://img.shields.io/github/stars/chenmoand/ASSblog)
 
->  序言: 这是我暑假学的, 可能有不明觉厉的代买别喷啊, 觉得有帮助有点个star呗!  **暂且未完成!**
+>  序言: 这是我暑假学的, 可能有不明觉厉的代码别喷啊, 觉得有帮助有点个star呗!  **暂且未完成!**
 >
 >  前端地址: [ReactBlog](https://github.com/chenmoand/ReactBlog)
 
@@ -28,7 +28,7 @@
 
 ### 项目结构 
 
-```
+```xml-dtd
 |-- com
 |   `-- brageast
 |       `-- blog
@@ -77,7 +77,7 @@
 |               `-- entity
 |                   |-- Combination.java 偷懒类
 |                   |-- ResultState.java 用于返会状态方便转JSON的类
-|                   `-- State.java 一个enum转台类
+|                   `-- State.java 一个enum状态类
 ```
 
 ~~tree指令生成~~ 2019.8.11 文件目录更新
