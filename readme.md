@@ -3,11 +3,11 @@
     <h3><center>一个简单的SpringBoot博客后端</center><h3>
 </h1>
 
-![GitHub](https://img.shields.io/github/license/chenmoand/ASSblog)  ![GitHub last commit (branch)](https://img.shields.io/github/last-commit/chenmoand/ASSblog/master)  ![GitHub stars](https://img.shields.io/github/stars/chenmoand/ASSblog)
+[![GitHub](https://img.shields.io/github/license/chenmoand/ASSblog)](https://github.com/chenmoand/ASSblog/blob/master/LICENSE)  [![GitHub last commit (branch)](https://img.shields.io/github/last-commit/chenmoand/ASSblog/master)](https://github.com/chenmoand/ASSblog/commits/master)  [![GitHub stars](https://img.shields.io/github/stars/chenmoand/ASSblog)](https://github.com/chenmoand/ASSblog/stargazers)  
 
 >  序言: 这是我暑假学的, 可能有不明觉厉的代码别喷啊, 觉得有帮助有点个star呗!  **暂且未完成!**
 >
->  前端地址: [ReactBlog](https://github.com/chenmoand/ReactBlog)
+>  前端地址: [ReactBlog](https://github.com/chenmoand/ReactBlog) 也是未完成状态
 
 ### 一, 如何使用
 
