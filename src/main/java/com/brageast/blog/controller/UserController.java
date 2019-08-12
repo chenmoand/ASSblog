@@ -56,14 +56,14 @@ public class UserController {
     public ResultState findUser(@PathVariable String name){
         return userService.findUser(name);
     }
-    /*  @RequestMapping(value = "/updata", method = RequestMethod.POST)
-    public Boolean updataUser(@RequestBody User user) {
-        try {
-            userService.updataUser(user.getId(),user.getName(),user.getPassword(),user.getEmail(),user.getGroup());
-            return true;
-        } catch (Exception e) {
-            e.printStackTrace();
-            return false;
-        }
-    }*/
+    @RequestMapping(value = "/updata", method = RequestMethod.POST)
+    public ResultState updataUser(@RequestBody User user) {
+        return userService.updata(user);
+
+    }
+    @RequestMapping(value = "/updataUserGroup", method = RequestMethod.POST)
+    public ResultState updataUserGroup(@RequestBody Combination<Integer, Integer> info) {
+        return userService.updataUserGroup(info.getEType(), info.getEType());
+
+    }
 }

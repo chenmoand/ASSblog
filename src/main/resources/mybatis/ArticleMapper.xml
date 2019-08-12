@@ -14,6 +14,17 @@
 <!--            </if>-->
         </where>
     </select>
+    <select id="getArticeInfo" resultType="com.brageast.blog.util.entity.Combination">
+        SELECT (SELECT COUNT(*) FROM articeList) AS eType,
+               (SELECT COUNT(DISTINCT(lable)) FROM articeList) AS tType
+
+    </select>
+    <select id="getLatestArtice" resultType="com.brageast.blog.util.entity.Combination">
+        SELECT articleName AS eType, url AS tType
+        FROM articeList
+        ORDER BY id DESC
+        LIMIT 0, 8
+    </select>
     <insert id="addArtice" parameterType="com.brageast.blog.entity.Article">
         INSERT INTO articeList(`id`, `articleName`, `describe`, `author`, `lable`, `classification`, `content`, `date`, `url`)
         VALUE (#{id}, #{articleName}, #{describe}, #{author}, #{lable}, #{classification}, #{content}, #{date}, #{url})

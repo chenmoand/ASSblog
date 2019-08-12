@@ -21,4 +21,6 @@ public interface UserService extends IService<User> {
     ResultState deleteUser(Integer id);
     ResultState findUser(String name);
     ResultState login(String name, String password);
+    ResultState updata(User user);
+    ResultState updataUserGroup(Integer User_ID, Integer Group_ID);
 }

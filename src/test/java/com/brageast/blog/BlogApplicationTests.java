@@ -1,27 +1,17 @@
 package com.brageast.blog;
 
-import com.alibaba.fastjson.JSON;
-import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.brageast.blog.config.ServerConfig;
 import com.brageast.blog.entity.User;
+import com.brageast.blog.mapper.ArticleMapper;
 import com.brageast.blog.mapper.GroupMapper;
 import com.brageast.blog.mapper.PermissionsMapper;
 import com.brageast.blog.service.ArticleService;
 import com.brageast.blog.service.UserService;
-import com.brageast.blog.util.EntityUtil;
-import com.brageast.blog.util.JwtUtil;
-import io.jsonwebtoken.Claims;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.test.context.junit4.SpringRunner;
-
-import java.util.Date;
-import java.util.HashSet;
-import java.util.Map;
 
 @Slf4j
 @RunWith(SpringRunner.class)
@@ -36,6 +26,8 @@ public class BlogApplicationTests {
     private GroupMapper groupMapper;
     @Autowired(required=false)
     private PermissionsMapper permissionsMapper;
+    @Autowired(required=false)
+    private ArticleMapper articleMapper;
 
     @Test
     public void contextLoads() throws Exception {
@@ -53,6 +45,12 @@ public class BlogApplicationTests {
         System.out.println("");
     }
     @Test
+    public void A(){
+//        userService.addUser("chenmo","132146","2010557767@qq.com",
+//                new HashSet<Integer>(){{add(1); add(2);}});
+        System.out.println(articleMapper.getArticeInfo());
+    }
+    /*@Test
     public void Jsontest(){
         User admin = (User) userService.findUser("阿三打撒").getData();
         String token = JwtUtil.builder(admin);
@@ -64,11 +62,7 @@ public class BlogApplicationTests {
         System.out.println(m);
     }
 
-    @Test
-    public void A(){
-        userService.addUser("chenmo","132146","2010557767@qq.com",
-                new HashSet<Integer>(){{add(1); add(2);}});
-    }
+
 
     @Test
     public void B(){
@@ -118,6 +112,6 @@ public class BlogApplicationTests {
     public void  K(){
 //        String port = environment.getProperty("server.port");
         EntityUtil.println("dadasd","2323",22, false);
-    }
+    }*/
 
 }

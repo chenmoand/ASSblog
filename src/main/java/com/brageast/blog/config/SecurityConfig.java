@@ -43,7 +43,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
                 .authorizeRequests() // 开始设置权限
                 .antMatchers("/druid/**").anonymous()
-                .antMatchers("/api/user/**").permitAll()
+                .antMatchers("/api/**").permitAll()
                 // 除上面外的所有请求全部放开
                 .anyRequest().authenticated();
 

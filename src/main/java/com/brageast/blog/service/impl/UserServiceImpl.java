@@ -79,4 +79,26 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         return new ResultState(State.SUCCESS,"成功登陆", token);
     }
 
+    @Override
+    public ResultState updata(User user) {
+        try {
+            baseMapper.updateUser(user.getId(), user.getName(), user.getPassword(), user.getEmail());
+        } catch (Exception e) {
+            log.error(e.getMessage());
+            return new ResultState(State.FAIL,"更新失败");
+        }
+        return new ResultState(State.SUCCESS,"更新成功");
+    }
+
+    @Override
+    public ResultState updataUserGroup(Integer User_ID, Integer Group_ID) {
+        try {
+            baseMapper.updateUserGroup(User_ID, Group_ID);
+        } catch (Exception e) {
+            log.error(e.getMessage());
+            return new ResultState(State.FAIL,"更新失败");
+        }
+        return new ResultState(State.SUCCESS,"更新成功");
+    }
+
 }

@@ -4,11 +4,15 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.brageast.blog.entity.Article;
 import com.brageast.blog.entity.BaseArticle;
 import com.brageast.blog.service.ArticleService;
+import com.brageast.blog.util.entity.Combination;
+import com.brageast.blog.util.entity.ResultState;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@Slf4j
 @CrossOrigin
 @RestController
 @RequestMapping(value = "/api/article")
@@ -36,7 +40,8 @@ public class AriticleController {
             );
             return true;
         } catch (Exception e) {
-            e.printStackTrace();
+//            e.printStackTrace();
+            log.error(e.getMessage());
             return false;
         }
     }
@@ -46,7 +51,8 @@ public class AriticleController {
             articeService.deleteArtice(id);
             return true;
         } catch (Exception e){
-            e.printStackTrace();
+//            e.printStackTrace();
+            log.error(e.getMessage());
             return false;
         }
     }
@@ -67,8 +73,23 @@ public class AriticleController {
             );
             return true;
         } catch (Exception e) {
-            e.printStackTrace();
+//            e.printStackTrace();
+            log.error(e.getMessage());
             return false;
         }
+    }
+    @RequestMapping(value = "/f")
+    public Article findAriticle(String url) {
+        return articeService.getMoreArticle(url);
+    }
+
+    @RequestMapping(value = "/wz")
+    public Combination<Integer, Integer> getArticeInfo() {
+//        System.out.println(articeService.getArticeInfo().toJsonString());
+        return articeService.getArticeInfo();
+    }
+    @RequestMapping(value = "/latest")
+    public ResultState getLatestArtice() {
+        return articeService.getLatestArtice();
     }
 }

@@ -33,7 +33,7 @@ public class EntityUtil {
     // 向Python 那样输出
     // 将+号连接符试图换成逗号qwq
     public static String toString(Object... objs){
-        StringBuffer sb = new StringBuffer();
+        StringBuilder sb = new StringBuilder();
         Arrays.asList(objs).forEach(sb::append);
         return sb.toString();
     }

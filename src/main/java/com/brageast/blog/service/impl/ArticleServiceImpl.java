@@ -6,11 +6,15 @@ import com.brageast.blog.entity.Article;
 import com.brageast.blog.entity.BaseArticle;
 import com.brageast.blog.mapper.ArticleMapper;
 import com.brageast.blog.service.ArticleService;
+import com.brageast.blog.util.entity.Combination;
+import com.brageast.blog.util.entity.ResultState;
+import com.brageast.blog.util.entity.State;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
+import java.util.Set;
 
 @Service
 @Slf4j
@@ -43,6 +47,23 @@ public class ArticleServiceImpl extends ServiceImpl<ArticleMapper, Article> impl
     @Override
     public void deleteArtice(Long id) {
         baseMapper.deleteArtice(id);
+    }
+
+    @Override
+    public Combination<Integer, Integer> getArticeInfo() {
+        return baseMapper.getArticeInfo();
+    }
+
+    @Override
+    public ResultState getLatestArtice() {
+        Set<Combination<String, String>> sc;
+        try {
+            sc = baseMapper.getLatestArtice();
+        } catch (Exception e){
+            log.error(e.getMessage());
+            return new ResultState(State.FAIL, "发生了错误");
+        }
+        return new ResultState(State.SUCCESS,"获取成功", sc);
     }
 
 
