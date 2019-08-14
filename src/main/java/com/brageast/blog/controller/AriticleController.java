@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Set;
 
 @Slf4j
 @CrossOrigin
@@ -91,5 +92,9 @@ public class AriticleController {
     @RequestMapping(value = "/latest")
     public ResultState getLatestArtice() {
         return articeService.getLatestArtice();
+    }
+    @RequestMapping(value = "/lables")
+    public Set<String> getLables() {
+        return articeService.getLables();
     }
 }

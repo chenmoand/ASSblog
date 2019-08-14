@@ -9,6 +9,7 @@ import com.brageast.blog.util.entity.ResultState;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.Date;
+import java.util.Set;
 
 public interface ArticleService extends IService<Article> {
 
@@ -25,4 +26,5 @@ public interface ArticleService extends IService<Article> {
     void deleteArtice(@Param("id") Long id);
     Combination<Integer, Integer> getArticeInfo();
     ResultState getLatestArtice();
+    Set<String> getLables();
 }

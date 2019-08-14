@@ -25,6 +25,10 @@
         ORDER BY id DESC
         LIMIT 0, 8
     </select>
+    <select id="getLables" resultType="java.lang.String">
+        SELECT DISTINCT(lable)
+        FROM articeList
+    </select>
     <insert id="addArtice" parameterType="com.brageast.blog.entity.Article">
         INSERT INTO articeList(`id`, `articleName`, `describe`, `author`, `lable`, `classification`, `content`, `date`, `url`)
         VALUE (#{id}, #{articleName}, #{describe}, #{author}, #{lable}, #{classification}, #{content}, #{date}, #{url})

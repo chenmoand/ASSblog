@@ -28,7 +28,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     private UserAccessDenyFilter rewriteAccessDenyFilter;
     @Autowired // 游客无法访问
     private GustAccessDenyFilter gustAccessDenyFilter;
-    @Autowired
+    @Autowired // Token 验证
     private JwtTokenFilter jwtTokenFilter;
 
     @Qualifier("userDetailsServiceImpl")

@@ -66,5 +66,10 @@ public class ArticleServiceImpl extends ServiceImpl<ArticleMapper, Article> impl
         return new ResultState(State.SUCCESS,"获取成功", sc);
     }
 
+    @Override
+    public Set<String> getLables() {
+        return baseMapper.getLables();
+    }
+
 
 }

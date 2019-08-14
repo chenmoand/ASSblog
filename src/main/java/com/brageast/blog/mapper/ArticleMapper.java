@@ -21,4 +21,5 @@ public interface ArticleMapper extends BaseMapper<Article> {
     void deleteArtice(Long id);
     Combination<Integer, Integer> getArticeInfo();
     Set<Combination<String, String>> getLatestArtice();
+    Set<String> getLables();
 }
