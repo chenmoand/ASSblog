@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.brageast.blog.entity.Article;
 import com.brageast.blog.entity.BaseArticle;
 import com.brageast.blog.service.ArticleService;
+import com.brageast.blog.util.EntityUtil;
 import com.brageast.blog.util.entity.Combination;
 import com.brageast.blog.util.entity.ResultState;
 import lombok.extern.slf4j.Slf4j;
@@ -23,11 +24,12 @@ public class AriticleController {
     private ArticleService articeService;
 
     @RequestMapping(value = "/page")
-    public List<BaseArticle> getBaseAriticles(Integer current, Long size){
+    public Combination<List<BaseArticle>, Long> getBaseAriticles(Integer current, Long size){
         int ct = current == null? 0 : current;
         long sz = size == null? 10 : size;
         Page<BaseArticle> page = new Page<>(ct, sz);
-        return articeService.getBaseArticle(page).getRecords();
+        Page<BaseArticle> pb = articeService.getBaseArticle(page);
+        return EntityUtil.getEntity(pb.getRecords(), pb.getPages());
     }
     @RequestMapping(value = "/update", method = RequestMethod.POST)
     public Boolean updateArtice(@RequestBody Article article){

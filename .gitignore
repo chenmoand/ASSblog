@@ -1,6 +1,7 @@
 HELP.md
 target/
 src/main/resources/application.yml
+src/main/resources/2657790_brageast.com.pfx
 
 !.mvn/wrapper/maven-wrapper.jar
 !**/src/test/**
