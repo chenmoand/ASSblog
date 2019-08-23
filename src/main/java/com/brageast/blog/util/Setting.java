@@ -16,4 +16,6 @@ public class Setting {
             +"&client_id=" + Client_Id + "&code="
             ;
     public static final String GITHUB_API_USER = "https://api.github.com/user?access_token=";
+
+    public static final String USER_API = "https://api.github.com/users/";
 }

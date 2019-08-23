@@ -1,6 +1,7 @@
 package com.brageast.blog.util;
 
 import com.brageast.blog.util.entity.Combination;
+import org.springframework.lang.Nullable;
 
 import java.util.Arrays;
 import java.util.HashSet;
@@ -13,7 +14,26 @@ import java.util.Set;
  * 没有什么实际意义,仅此娱乐
  */
 
-public class EntityUtil {
+public abstract class EntityUtil {
+
+    public static <T> T getEntity(T t){
+        isNull(t, "空指针异常");
+        return t;
+    }
+    public static <T> T getEntity(T t, String message){
+        isNull(t, message);
+        return t;
+    }
+    /**
+     * Assert.isNull() 不算null会报错 我只想是null 才报错
+     * @param object
+     * @param message
+     */
+    public static void isNull(@Nullable Object object, String message) {
+        if (object == null) {
+            throw new IllegalArgumentException(message);
+        }
+    }
 
     // 配合Combination食用更佳
     public static <E,T> Combination<E,T> getEntity(E e, T t){

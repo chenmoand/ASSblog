@@ -2,19 +2,17 @@ package com.brageast.blog.controller;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.brageast.blog.entity.User;
+import com.brageast.blog.service.GithubService;
 import com.brageast.blog.service.UserService;
 import com.brageast.blog.util.PasswordTools;
-import com.brageast.blog.util.Setting;
 import com.brageast.blog.util.entity.Combination;
 import com.brageast.blog.util.entity.ResultState;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.client.RestTemplate;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Set;
 
@@ -28,7 +26,7 @@ public class UserController {
     @Autowired
     private UserService userService;
     @Autowired
-    private RestTemplate restTemplate;
+    private GithubService githubService;
 
     @RequestMapping(value = "/page")
     public List<User> getUsers(Integer current, Long size) {
@@ -72,12 +70,7 @@ public class UserController {
 
     }
     @RequestMapping(value = "/github")
-    public String github(String code) {
-        String str = Setting.Client + code;
-        HashMap rg = restTemplate.getForObject(str , HashMap.class);
-        HashMap ru = restTemplate.getForObject(Setting.GITHUB_API_USER + rg.get("access_token"), HashMap.class);
-        System.out.println(ru);
-//        new Page<>()
-        return null;
+    public ResultState github(String code) {
+        return githubService.createGithubUser(code);
     }
 }
