@@ -1,6 +1,7 @@
 package com.brageast.blog.controller;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.brageast.blog.annotation.WebLog;
 import com.brageast.blog.entity.User;
 import com.brageast.blog.service.GithubService;
 import com.brageast.blog.service.UserService;
@@ -69,6 +70,8 @@ public class UserController {
         return userService.updataUserGroup(info.getEType(), info.getEType());
 
     }
+
+    @WebLog(description = "github登陆记录")
     @RequestMapping(value = "/github")
     public ResultState github(String code) {
         return githubService.createGithubUser(code);
