@@ -2,6 +2,7 @@ package com.brageast.blog.annotation.realization;
 
 import com.alibaba.fastjson.JSON;
 import com.brageast.blog.annotation.WebLog;
+import com.brageast.blog.annotation.util.BaseAtn;
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
@@ -18,7 +19,7 @@ import java.lang.reflect.Method;
 @Aspect
 @Component
 @Profile({"dev", "test", "prod"})  // 根据环境是否启用这个类
-public class WebLogAtn {
+public class WebLogAtn extends BaseAtn {
 
     public static final String name = "WebLog()";
 
@@ -55,7 +56,6 @@ public class WebLogAtn {
         // 接口结束后换行，方便分割查看
         log.info("=========================================== End ===========================================" + "\n");
     }
-
 
     @Around(name)
     public Object doAround(ProceedingJoinPoint proceedingJoinPoint) throws Throwable {

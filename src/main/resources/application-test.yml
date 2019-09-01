@@ -1,4 +1,6 @@
 spring:
+  profiles:
+    active: dev
   jackson:
     date-format: yyyy-MM-dd
     time-zone: GMT+8
@@ -27,5 +29,9 @@ spring:
         enabled: true
 server:
   port: 8848
+#  ssl: 可自行到阿里云申请一个免费的ssl证书
+#    key-store: classpath:2657790_brageast.com.pfx
+#    key-store-type: PKCS12
+#    key-store-password: ******
 mybatis-plus:
   mapper-locations: classpath*:mybatis/*Mapper.xml
