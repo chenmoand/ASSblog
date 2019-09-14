@@ -12,6 +12,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -74,6 +75,8 @@ public class UserController {
     @WebLog(description = "github登陆记录")
     @RequestMapping(value = "/github")
     public ResultState github(String code) {
+        ModelAndView modelAndView = new ModelAndView("https://www.bragesat.com/#/w/return");
+
         return githubService.createGithubUser(code);
     }
 }
